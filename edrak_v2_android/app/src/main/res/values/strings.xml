@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Edrak</string>
+    <string name="listening_notification_title">إدراك يستمع</string>
+    <string name="listening_notification_text">جاري التسجيل في الخلفية</string>
+    <string name="channel_listening">الاستماع المستمر</string>
+    <string name="channel_actions">الإجراءات المكتشفة</string>
+</resources>

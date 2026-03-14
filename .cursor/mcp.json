@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "edrak-docs": {
+      "command": "node",
+      "args": [
+        "/Users/eslamfaisal/Desktop/work/second_brain/docs/mcp-server/index.mjs"
+      ],
+      "env": {
+        "EDRAK_DOCS_DIR": "/Users/eslamfaisal/Desktop/work/second_brain/docs/content"
+      }
+    }
+  }
+}

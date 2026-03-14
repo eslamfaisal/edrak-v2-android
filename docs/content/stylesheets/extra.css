@@ -1,0 +1,52 @@
+/* ══════════════════════════════════════════════════════════════
+   Edrak (إدراك) — Custom Theme Colors
+   Deep Midnight Blue (#0B132B) + Neon Cyan (#45F0DF)
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Light Mode ────────────────────────────────────────────── */
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: #0B132B;
+  --md-primary-fg-color--light: #1B2540;
+  --md-primary-fg-color--dark: #060A18;
+  --md-accent-fg-color: #45F0DF;
+  --md-accent-fg-color--transparent: rgba(69, 240, 223, 0.15);
+}
+
+/* ── Dark Mode (Stealth) ──────────────────────────────────── */
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #0B132B;
+  --md-primary-fg-color--light: #1B2540;
+  --md-primary-fg-color--dark: #060A18;
+  --md-accent-fg-color: #45F0DF;
+  --md-accent-fg-color--transparent: rgba(69, 240, 223, 0.15);
+  --md-default-bg-color: #0B132B;
+  --md-default-bg-color--light: #111D38;
+  --md-default-bg-color--lighter: #172647;
+  --md-default-bg-color--lightest: #1E3058;
+}
+
+/* ── Navigation Tab Accent ────────────────────────────────── */
+.md-tabs {
+  background-color: var(--md-primary-fg-color--dark);
+}
+
+/* ── Admonition Custom Colors ─────────────────────────────── */
+.md-typeset .admonition.info,
+.md-typeset details.info {
+  border-color: #45F0DF;
+}
+
+.md-typeset .admonition.info > .admonition-title,
+.md-typeset details.info > summary {
+  background-color: rgba(69, 240, 223, 0.1);
+}
+
+/* ── Code Block Accent ────────────────────────────────────── */
+.md-typeset code {
+  border-radius: 4px;
+}
+
+/* ── Mermaid Diagram Styling ──────────────────────────────── */
+.mermaid {
+  text-align: center;
+}

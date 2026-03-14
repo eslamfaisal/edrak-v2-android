@@ -1,0 +1,147 @@
+site_name: Edrak (إدراك) – Technical Documentation
+site_description: "AI Second Brain — Your silent memory. It listens, organizes, and remembers so you don't have to."
+docs_dir: content
+site_dir: site
+
+theme:
+  name: material
+  # logo: docs/assets/logo.png
+  # favicon: docs/assets/favicon.png
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.tracking
+    - navigation.path
+    - navigation.top
+    - navigation.instant
+    - search.highlight
+    - search.suggest
+    - search.share
+    - toc.follow
+    - content.code.copy
+    - content.tabs.link
+    - navigation.indexes
+  palette:
+    # Light mode — Edrak Theme
+    - scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Dark mode — Edrak Stealth Theme
+    - scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - tables
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - 🏠 Home: index.md
+  - 🚀 Getting Started: getting-started.md
+
+  # ══════════════════════════════════════════════════════════════
+  # 🏗️ SYSTEM ARCHITECTURE
+  # ══════════════════════════════════════════════════════════════
+  - 🏗️ Architecture:
+      - 📋 System Overview: architecture/system-overview.md
+      - 🔄 Data Pipeline: architecture/data-pipeline.md
+      - 📁 Folder Structure: architecture/folder-structure.md
+      - 🛠️ Tech Stack: architecture/tech-stack.md
+
+  # ══════════════════════════════════════════════════════════════
+  # ⚙️ BACKEND
+  # ══════════════════════════════════════════════════════════════
+  - ⚙️ Backend:
+      - 📋 Overview: backend/overview.md
+      - 🔌 API Design: backend/api-design.md
+      - 🔐 Authentication: backend/authentication.md
+      - 🗄️ Database Schema: backend/database-schema.md
+      - 🤖 AI Pipeline: backend/ai-pipeline.md
+      - 🧠 AI Prompts: backend/ai-prompts.md
+      - 📊 Daily Digest: backend/daily-digest.md
+      - 💬 RAG Pipeline: backend/rag-pipeline.md
+
+  # ══════════════════════════════════════════════════════════════
+  # 📱 MOBILE (Shared + Platform-Specific)
+  # ══════════════════════════════════════════════════════════════
+  - 📱 Mobile:
+      - 📋 Overview: mobile/overview.md
+      - 🎨 Design System: mobile/design-system.md
+      - 🖼️ UI Design Reference (Stitch): mobile/ui-design-reference.md
+      - 🔊 Background Service: mobile/background-service.md
+      - 🔋 Battery Optimization: mobile/battery-optimization.md
+      - 🎙️ On-Device STT: mobile/on-device-stt.md
+      - ⏰ Scheduling: mobile/scheduling.md
+      - 🤖 Android (Kotlin + Compose):
+          - 📋 Overview: mobile/android/overview.md
+          - 🏗️ Clean Architecture: mobile/android/clean-architecture.md
+          - 🔄 State Management: mobile/android/state-management.md
+          - 🔋 Power Mode: mobile/android/power-mode.md
+          - 🏷️ Dynamic Classifications: mobile/android/dynamic-classifications.md
+          - 🔑 Build & Signing: mobile/android/build-signing.md
+      - 🍎 iOS (Swift + SwiftUI):
+          - 📋 Overview: mobile/ios/overview.md
+          - 🏗️ Clean Architecture: mobile/ios/clean-architecture.md
+          - 🔄 State Management: mobile/ios/state-management.md
+
+  # ══════════════════════════════════════════════════════════════
+  # 🔒 SECURITY & PRIVACY
+  # ══════════════════════════════════════════════════════════════
+  - 🔒 Security:
+      - 🛡️ Privacy Architecture: security/privacy-architecture.md
+      - 🔄 Data Flow: security/data-flow.md
+
+  # ══════════════════════════════════════════════════════════════
+  # 🧩 FEATURES
+  # ══════════════════════════════════════════════════════════════
+  - 🧩 Features:
+        - 🔗 Content Sharing: features/content-sharing.md
+        - 🌐 Web Platform: features/web-platform.md
+        - 🔗 Deep Links: features/deep-links.md
+        - ☁️ GCS Storage: features/storage-gcs.md
+        - 🛡️ Admin Dashboard: features/admin-dashboard.md
+      - 🔐 Authentication: features/auth.md
+      - 🎙️ Memory Ingestion: features/memory-ingestion.md
+      - 📊 Insights Dashboard: features/insights-dashboard.md
+      - 💬 Chat with Memory: features/chat-with-memory.md
+      - 📝 Daily Digest: features/daily-digest.md
+      - 🎮 Smart Controls: features/smart-controls.md
+
+  # ══════════════════════════════════════════════════════════════
+  # 🛠️ DEVELOPMENT
+  # ══════════════════════════════════════════════════════════════
+  - 🛠️ Development:
+      - 🏁 Setup Guide: development/setup.md
+      - 📏 Coding Standards: development/coding-standards.md
+      - 🧪 API Testing: development/api-testing.md
+      - 🚀 Deployment: development/deployment.md
+      - 🧑‍🏫 Mentor Mode: development/mentor-mode.md

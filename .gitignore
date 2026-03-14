@@ -1,0 +1,99 @@
+# ========================
+# OS
+# ========================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ========================
+# IDE / Editors
+# ========================
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# ========================
+# MkDocs (Documentation)
+# ========================
+docs/site/
+
+# ========================
+# MCP Server (Node.js)
+# ========================
+docs/mcp-server/node_modules/
+
+# ========================
+# Spring Boot / Gradle (Backend)
+# ========================
+second_brain_backend/.gradle/
+second_brain_backend/build/
+!second_brain_backend/gradle/wrapper/gradle-wrapper.jar
+
+# Backend environment files
+second_brain_backend/.env
+second_brain_backend/.env.*
+!second_brain_backend/.env.example
+
+# ========================
+# Android Native (Mobile)
+# ========================
+edrak_android/.gradle/
+edrak_android/build/
+edrak_android/app/build/
+edrak_android/local.properties
+edrak_android/captures/
+edrak_android/*.jks
+edrak_android/*.keystore
+edrak_android/key.properties
+edrak_android/app/release/
+edrak_android/app/debug/
+
+edrak_v2_android/.gradle/
+edrak_v2_android/build/
+edrak_v2_android/app/build/
+edrak_v2_android/local.properties
+edrak_v2_android/captures/
+edrak_v2_android/*.jks
+edrak_v2_android/*.keystore
+edrak_v2_android/key.properties
+edrak_v2_android/app/release/
+edrak_v2_android/app/debug/
+
+# ========================
+# iOS Native (Mobile)
+# ========================
+edrak_ios/Pods/
+edrak_ios/DerivedData/
+edrak_ios/*.xcworkspace/xcuserdata/
+edrak_ios/*.xcodeproj/xcuserdata/
+edrak_ios/*.xcodeproj/project.xcworkspace/xcshareddata/
+edrak_ios/build/
+
+# ========================
+# General Build & Logs
+# ========================
+*.log
+*.tmp
+*.temp
+*.cache
+
+# ========================
+# Secrets & Credentials
+# ========================
+*.pem
+*.p12
+*.key
+*.jks
+*.keystore
+google-services.json
+GoogleService-Info.plist
+firebase_app_id_file.json
