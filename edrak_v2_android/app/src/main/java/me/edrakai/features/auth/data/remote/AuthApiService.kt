@@ -7,10 +7,10 @@ import retrofit2.http.POST
 
 interface AuthApiService {
     @POST("api/v1/auth/login")
-    suspend fun login(@Body request: LoginRequest): LoginResponse
+    suspend fun login(@Body request: LoginRequest): AuthApiResponse
 
     @POST("api/v1/auth/register")
-    suspend fun register(@Body request: RegisterRequest): LoginResponse
+    suspend fun register(@Body request: RegisterRequest): AuthApiResponse
 }
 
 // ─── Request DTOs ────────────────────────────────────────────────────────────
@@ -28,13 +28,34 @@ data class RegisterRequest(
     val password: String
 )
 
-// ─── Response DTOs ───────────────────────────────────────────────────────────
+// ─── Response DTOs (matches actual backend envelope) ─────────────────────────
+
+/**
+ * Top-level envelope: {"success": true, "message": "...", "data": {...}, "timestamp": "..."}
+ */
+@Serializable
+data class AuthApiResponse(
+    @SerialName("success")   val success: Boolean,
+    @SerialName("message")   val message: String,
+    @SerialName("data")      val data: AuthResponseData,
+    @SerialName("timestamp") val timestamp: String? = null,
+)
 
 @Serializable
-data class LoginResponse(
-    @SerialName("accessToken")  val accessToken: String,
-    @SerialName("refreshToken") val refreshToken: String,
-    @SerialName("userId")       val userId: Long,
-    @SerialName("name")         val name: String,
-    @SerialName("email")        val email: String
+data class AuthResponseData(
+    @SerialName("accessToken")        val accessToken: String,
+    @SerialName("refreshToken")       val refreshToken: String,
+    @SerialName("expiresIn")          val expiresIn: Long,
+    @SerialName("tokenType")          val tokenType: String,
+    @SerialName("firebaseCustomToken") val firebaseCustomToken: String? = null,
+    @SerialName("user")               val user: RemoteUser,
+)
+
+@Serializable
+data class RemoteUser(
+    @SerialName("id")           val id: String,
+    @SerialName("email")        val email: String,
+    @SerialName("displayName")  val displayName: String,
+    @SerialName("timezone")     val timezone: String? = null,
+    @SerialName("authProvider") val authProvider: String? = null,
 )

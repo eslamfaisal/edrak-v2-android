@@ -2,6 +2,7 @@ package me.edrakai.core.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import me.edrakai.core.database.dao.ConversationDao
 import me.edrakai.core.database.dao.DetectedActionDao
 import me.edrakai.core.database.dao.TranscriptChunkDao
@@ -16,8 +17,9 @@ import me.edrakai.core.database.entity.TranscriptChunkEntity
         DetectedActionEntity::class,
     ],
     version = 1,
-    exportSchema = true,
+    exportSchema = false,
 )
+@TypeConverters(EdrakTypeConverters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun conversationDao(): ConversationDao
     abstract fun transcriptChunkDao(): TranscriptChunkDao

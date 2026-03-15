@@ -10,8 +10,8 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 /**
- * Stores and retrieves JWT tokens using EncryptedSharedPreferences.
- * This is the ONLY place tokens are stored. Never use plain SharedPreferences.
+ * Stores and retrieves JWT tokens and user profile using EncryptedSharedPreferences.
+ * This is the ONLY place tokens and user data are stored. Never use plain SharedPreferences.
  */
 @Singleton
 class TokenManager @Inject constructor(
@@ -31,6 +31,8 @@ class TokenManager @Inject constructor(
         )
     }
 
+    // ─── Token Storage ────────────────────────────────────────────────────────
+
     fun saveTokens(accessToken: String, refreshToken: String) {
         prefs.edit()
             .putString(KEY_ACCESS_TOKEN, accessToken)
@@ -42,10 +44,41 @@ class TokenManager @Inject constructor(
 
     fun getRefreshToken(): String? = prefs.getString(KEY_REFRESH_TOKEN, null)
 
+    // ─── User Profile Storage ─────────────────────────────────────────────────
+
+    fun saveUserProfile(
+        userId: String,
+        email: String,
+        displayName: String,
+        timezone: String? = null,
+        firebaseCustomToken: String? = null,
+    ) {
+        prefs.edit()
+            .putString(KEY_USER_ID, userId)
+            .putString(KEY_USER_EMAIL, email)
+            .putString(KEY_USER_DISPLAY_NAME, displayName)
+            .putString(KEY_USER_TIMEZONE, timezone)
+            .putString(KEY_FIREBASE_CUSTOM_TOKEN, firebaseCustomToken)
+            .apply()
+    }
+
+    fun getUserId(): String? = prefs.getString(KEY_USER_ID, null)
+    fun getUserEmail(): String? = prefs.getString(KEY_USER_EMAIL, null)
+    fun getUserDisplayName(): String? = prefs.getString(KEY_USER_DISPLAY_NAME, null)
+    fun getUserTimezone(): String? = prefs.getString(KEY_USER_TIMEZONE, null)
+    fun getFirebaseCustomToken(): String? = prefs.getString(KEY_FIREBASE_CUSTOM_TOKEN, null)
+
+    // ─── Session Control ──────────────────────────────────────────────────────
+
     fun clearTokens() {
         prefs.edit()
             .remove(KEY_ACCESS_TOKEN)
             .remove(KEY_REFRESH_TOKEN)
+            .remove(KEY_USER_ID)
+            .remove(KEY_USER_EMAIL)
+            .remove(KEY_USER_DISPLAY_NAME)
+            .remove(KEY_USER_TIMEZONE)
+            .remove(KEY_FIREBASE_CUSTOM_TOKEN)
             .remove(KEY_VOICE_SETUP_COMPLETE)
             .apply()
     }
@@ -58,23 +91,20 @@ class TokenManager @Inject constructor(
 
     fun isVoiceSetupComplete(): Boolean = prefs.getBoolean(KEY_VOICE_SETUP_COMPLETE, false)
 
-    /**
-     * Attempts to refresh the access token using the stored refresh token.
-     * Returns true if refresh was successful.
-     * NOTE: The actual refresh network call will be injected in the auth feature.
-     * This is a placeholder that other features can expand.
-     */
     fun refreshToken(): Boolean {
-        // Will be implemented in auth feature (Prompt 1B)
-        // For now: clear tokens to force re-login
         Timber.w("TokenManager: refreshToken called — not yet implemented, clearing tokens")
         clearTokens()
         return false
     }
 
     companion object {
-        private const val KEY_ACCESS_TOKEN = "access_token"
-        private const val KEY_REFRESH_TOKEN = "refresh_token"
+        private const val KEY_ACCESS_TOKEN         = "access_token"
+        private const val KEY_REFRESH_TOKEN        = "refresh_token"
+        private const val KEY_USER_ID              = "user_id"
+        private const val KEY_USER_EMAIL           = "user_email"
+        private const val KEY_USER_DISPLAY_NAME    = "user_display_name"
+        private const val KEY_USER_TIMEZONE        = "user_timezone"
+        private const val KEY_FIREBASE_CUSTOM_TOKEN = "firebase_custom_token"
         private const val KEY_VOICE_SETUP_COMPLETE = "voice_setup_complete"
     }
 }
