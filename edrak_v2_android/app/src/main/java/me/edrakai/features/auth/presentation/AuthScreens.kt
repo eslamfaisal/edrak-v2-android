@@ -208,6 +208,7 @@ private fun AuthContent(
             .fillMaxSize()
             .background(EdrakColors.Background)
             .verticalScroll(rememberScrollState())
+            .imePadding()
             .padding(horizontal = 28.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {

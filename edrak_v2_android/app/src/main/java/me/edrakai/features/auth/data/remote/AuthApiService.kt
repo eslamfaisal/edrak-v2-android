@@ -23,7 +23,7 @@ data class LoginRequest(
 
 @Serializable
 data class RegisterRequest(
-    val name: String,
+    @SerialName("displayName") val name: String,
     val email: String,
     val password: String
 )

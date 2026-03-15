@@ -80,6 +80,7 @@ class TokenManager @Inject constructor(
             .remove(KEY_USER_TIMEZONE)
             .remove(KEY_FIREBASE_CUSTOM_TOKEN)
             .remove(KEY_VOICE_SETUP_COMPLETE)
+            .remove(KEY_PASSPHRASE)
             .apply()
     }
 
@@ -91,6 +92,18 @@ class TokenManager @Inject constructor(
 
     fun isVoiceSetupComplete(): Boolean = prefs.getBoolean(KEY_VOICE_SETUP_COMPLETE, false)
 
+    // ─── Voice Passphrase ─────────────────────────────────────────────────────
+
+    /** Saves the user's voice lock passphrase (encrypted). */
+    fun savePassphrase(phrase: String) {
+        prefs.edit().putString(KEY_PASSPHRASE, phrase.trim()).apply()
+    }
+
+    /** Returns the stored passphrase or null if not set. */
+    fun getPassphrase(): String? = prefs.getString(KEY_PASSPHRASE, null)
+
+    fun hasPassphrase(): Boolean = getPassphrase() != null
+
     fun refreshToken(): Boolean {
         Timber.w("TokenManager: refreshToken called — not yet implemented, clearing tokens")
         clearTokens()
@@ -98,13 +111,14 @@ class TokenManager @Inject constructor(
     }
 
     companion object {
-        private const val KEY_ACCESS_TOKEN         = "access_token"
-        private const val KEY_REFRESH_TOKEN        = "refresh_token"
-        private const val KEY_USER_ID              = "user_id"
-        private const val KEY_USER_EMAIL           = "user_email"
-        private const val KEY_USER_DISPLAY_NAME    = "user_display_name"
-        private const val KEY_USER_TIMEZONE        = "user_timezone"
+        private const val KEY_ACCESS_TOKEN          = "access_token"
+        private const val KEY_REFRESH_TOKEN         = "refresh_token"
+        private const val KEY_USER_ID               = "user_id"
+        private const val KEY_USER_EMAIL            = "user_email"
+        private const val KEY_USER_DISPLAY_NAME     = "user_display_name"
+        private const val KEY_USER_TIMEZONE         = "user_timezone"
         private const val KEY_FIREBASE_CUSTOM_TOKEN = "firebase_custom_token"
-        private const val KEY_VOICE_SETUP_COMPLETE = "voice_setup_complete"
+        private const val KEY_VOICE_SETUP_COMPLETE  = "voice_setup_complete"
+        private const val KEY_PASSPHRASE            = "voice_passphrase"
     }
 }

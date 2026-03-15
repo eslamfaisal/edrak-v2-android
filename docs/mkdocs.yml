@@ -117,6 +117,7 @@ nav:
   # 🔒 SECURITY & PRIVACY
   # ══════════════════════════════════════════════════════════════
   - 🔒 Security:
+        - 🔒 Voice Passphrase Lock: security/voice-lock.md
       - 🛡️ Privacy Architecture: security/privacy-architecture.md
       - 🔄 Data Flow: security/data-flow.md
 
