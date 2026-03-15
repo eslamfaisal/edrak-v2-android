@@ -16,7 +16,7 @@ class TranscriptRepositoryImpl @Inject constructor(
 ) : TranscriptRepository {
 
     override fun observeLiveTranscript(conversationId: String): Flow<List<LiveTranscriptEntry>> =
-        chunkDao.getByConversation(conversationId).map { chunks ->
+        chunkDao.getByConversationFlow(conversationId).map { chunks ->
             chunks.map { chunk ->
                 LiveTranscriptEntry(
                     id = chunk.id,

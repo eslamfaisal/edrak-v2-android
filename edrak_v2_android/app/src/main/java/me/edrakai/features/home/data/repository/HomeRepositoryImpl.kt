@@ -20,7 +20,7 @@ class HomeRepositoryImpl @Inject constructor(
 ) : HomeRepository {
 
     override fun observePendingActions(): Flow<List<DetectedAction>> =
-        actionDao.getPendingActions().map { entities ->
+        actionDao.getPendingActionsFlow().map { entities ->
             entities.map { e ->
                 DetectedAction(
                     id = e.id, conversationId = e.conversationId, type = e.type,
@@ -31,19 +31,22 @@ class HomeRepositoryImpl @Inject constructor(
         }
 
     override fun observeTodayConversations(): Flow<List<ConversationSummary>> =
-        conversationDao.getAllByDate(todayStartMs()).map { entities ->
-            entities.map { e ->
-                ConversationSummary(
-                    id = e.id, startTime = e.startTime, endTime = e.endTime,
-                    speakerCount = 0, // populated later in Phase 3
-                    previewText = "",  // populated later in Phase 5
-                    syncStatus = e.syncStatus
-                )
-            }
+        conversationDao.getAllFlow().map { entities ->
+            val todayStart = todayStartMs()
+            entities
+                .filter { it.startTime >= todayStart }
+                .map { e ->
+                    ConversationSummary(
+                        id = e.id, startTime = e.startTime, endTime = e.endTime,
+                        speakerCount = 0,
+                        previewText = "",
+                        syncStatus = e.syncStatus
+                    )
+                }
         }
 
     override suspend fun markActionExecuted(actionId: String) {
-        actionDao.updateExecuted(actionId, executed = true)
+        actionDao.markExecuted(actionId)
         runCatching { actionsApi.markExecuted(actionId) } // best-effort API call
     }
 

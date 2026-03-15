@@ -15,7 +15,8 @@ import timber.log.Timber
 @AndroidEntryPoint
 class EdrakListeningService : Service() {
 
-    override fun onBind(intent: IBinder?) = null
+    /** Not a bound service — return null. */
+    override fun onBind(intent: Intent?): IBinder? = null
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         Timber.d("EdrakListeningService: onStartCommand — stub (Phase 3A)")

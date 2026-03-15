@@ -11,6 +11,11 @@ object EdrakColors {
     // Backgrounds
     val BackgroundLight = Color(0xFFF6F8F8)
     val BackgroundDark = Color(0xFF102220)
+    val Background = Color(0xFF0B132B)      // Deep Midnight Blue — primary app background
+
+    // Text convenience aliases (used throughout UI)
+    val TextPrimary = Color(0xFFF1F5F9)     // = Slate100
+    val TextSecondary = Color(0xFF94A3B8)   // = Slate400
 
     // Surfaces
     val CardDark = Color(0xFF111D38)

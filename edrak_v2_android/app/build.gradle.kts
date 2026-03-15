@@ -26,7 +26,9 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField("String", "API_BASE_URL", "\"http://10.0.2.2:8080/\"")
+            // Real device: use production URL.
+            // For local dev, change to your Mac's LAN IP: "http://192.168.x.x:8080/"
+            buildConfigField("String", "API_BASE_URL", "\"https://edrak-backend-386734725162.us-central1.run.app/\"")
         }
         release {
             isMinifyEnabled = true

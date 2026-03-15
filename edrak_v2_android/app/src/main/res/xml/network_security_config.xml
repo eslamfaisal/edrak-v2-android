@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
-    <!-- Production: Only HTTPS is allowed by default (base-config) -->
+    <!--
+        DEBUG: Allow cleartext HTTP to local dev server (10.0.0.x, 192.168.x.x, localhost)
+        RELEASE: HTTPS only — no cleartext allowed
+    -->
     <base-config cleartextTrafficPermitted="false">
         <trust-anchors>
             <certificates src="system" />
         </trust-anchors>
     </base-config>
 
-    <!-- Allow cleartext (HTTP) only for local development servers -->
+    <debug-overrides>
+        <trust-anchors>
+            <certificates src="system" />
+            <certificates src="user" /> <!-- Trust user-installed CAs (for Charles/mitmproxy) -->
+        </trust-anchors>
+    </debug-overrides>
+
+    <!-- Allow HTTP to local dev machines in debug -->
     <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="true">10.0.2.2</domain>
-        <domain includeSubdomains="true">localhost</domain>
-        <domain includeSubdomains="true">127.0.0.1</domain>
+        <domain includeSubdomains="true">10.0.2.2</domain>      <!-- Android Emulator host -->
+        <domain includeSubdomains="true">192.168.1.1</domain>   <!-- Common LAN gateway -->
+        <domain includeSubdomains="false">localhost</domain>
     </domain-config>
 </network-security-config>
